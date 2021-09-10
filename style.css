@@ -1,0 +1,64 @@
+
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+.slide-fade-leave-active {
+    /*transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+}
+.triplestorelink {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+.example {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.container {
+    display: grid;/*
+    grid-template-rows: auto 40vh;
+    height: 65vh; */
+    gap: 1em;
+}
+
+.resulttable  {
+    table-layout: fixed;
+    vertical-align: top;
+}
+
+.resulttable td {
+    width: 50%;
+    vertical-align: top;
+}
+
+.container > header {
+    border-radius: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: green;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+.queryresults, .querydetailresults, .resonatorview {
+    overflow: auto;
+    align-content: start;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: green;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.uxcontainer {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}

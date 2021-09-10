@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Wikidata Sprachvereinfachung</title>
+  <link href="lib/material.css" rel="stylesheet">
+  <link href="lib/vuetify.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+  .v-tabs__item, .v-toolbar__title {
+    color: white;
+  }
+  .maintitle {
+    color: white;
+    text-decoration: none;
+  }
+  table.uxcomponents {
+    border-collapse: collapse;
+border: 2px solid rgb(30,129,176);
+letter-spacing: 1px;
+font-family: sans-serif;
+font-size: .8rem;"
+  }
+  td.ux,
+th.ux {
+    border: 1px solid rgb(30,129,176);
+    padding: 5px 10px;
+}
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app id="inspire">
+      <div>
+        <v-toolbar
+        color="rgb(30,129,176)"
+        tabs
+        >
+
+        <v-toolbar-title><router-link to="/" class="maintitle">{{ $t('appTitle') }}</router-link></v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <template v-slot:extension>
+          <v-tabs
+          v-model="activeTab"
+          center-active
+          color="rgb(30,129,176)"
+          slider-color="yellow"
+          >
+          <v-tab  :key="1" :to="`/`" exact>
+           {{ $t('overview')}}
+          </v-tab>
+          <v-tab  :key="2" :to="`/tools`" exact>
+           {{ $t('tools')}}
+          </v-tab>
+          <v-tab  :key="3" :to="`/persons`" exact>
+           {{ $t('persons')}}
+          </v-tab>
+          <v-tab  :key="4" :to="`/locations`" exact>
+           {{ $t('locations')}}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-toolbar>
+    <div class="locale-changer">
+      <v-btn  elevation="2"
+  rounded
+  x-small @click="setLangInPath('de')"
+      >{{ $t('german') }}</v-btn>
+      <v-btn  elevation="2"
+    rounded
+    x-small @click="setLangInPath('en')"
+      >{{ $t('english') }}</v-btn>
+    </div>
+    <v-tabs-items>
+      <v-tab-item v-for="tab of tabs" :key="tab.id" :value="tab.route">
+        <router-view></router-view>
+      </v-tab-item>
+    </v-tabs-items>
+  </div>
+</v-app>
+</div>
+
+<script src="lib/vue.min.js"></script>
+<script src="lib/vue-router.js"></script>
+<script src="lib/vuetify.js"></script>
+<script src="lib/axios.min.js"></script>
+<script src="main.js"></script>
+<script src="modelQuery.js"></script>
+<script src="persons.js"></script>
+<script src="tools.js"></script>
+<script src="locations.js"></script>
+<script src="InterconnectedDataQuery.js"></script>
+<script src="uiGeneration.js"></script>
+<script src="router.js"></script>
+<script src="lib/vue-treeselect.min.js"></script>
+<script src="queryTemplates.js"></script>
+<script src="https://unpkg.com/vue-i18n@8"></script>
+<script src="messages.js"></script>
+<script src="queries.js"></script>
+<script>
+const i18n = new VueI18n({
+locale : 'de',
+  fallbacklocale : 'en',
+  messages // set locale messages
+})
+
+const wikidatabase = "http://www.wikidata.org/entity/"
+
+new Vue({
+  i18n,
+  el: '#app',
+  data() {
+    return {
+      activeTab: null,
+      tabs: [
+        { id: 1, name: "Overview", route: `/` },
+        { id: 2, name: "Tools", route: `/tools` },
+        { id: 3, name: "Personen", route: `/persons` },
+        { id: 4, name: "Orte", route: `/locations` },
+      ]
+    };
+  },
+  methods : {
+    setLangInPath(myLanguage) {
+      i18n.locale = myLanguage
+      currentPath = this.$route.query
+      if (currentPath.lang) {
+        if(currentPath.lang != myLanguage){
+        let queries = JSON.parse(JSON.stringify(this.$route.query));
+        queries.lang = myLanguage
+        this.$router.replace({ query: queries });
+        this.$router.go()
+      }
+      }
+      else {
+        this.$router.push({ query: Object.assign({}, this.$route.query, { lang: myLanguage }) });
+        this.$router.go()
+      }
+ }
+  },
+  components: {
+  },
+  router
+})
+</script>
+</body>
+</html>
