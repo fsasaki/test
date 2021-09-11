@@ -5,6 +5,19 @@ const Main = { template: `
 	  <h1>{{ $t('appTitle') }}</h1>
 	  <p>{{ $t('appDescription') }}</p>
     <p>{{ $t('searchdescription') }}</p>
+    <v-autocomplete
+   v-model="select"
+   :loading="loading"
+   :items="items"
+   :search-input.sync="search"
+   cache-items
+   class="mx-4"
+   flat
+   hide-no-data
+   hide-details
+   label=""
+   solo-inverted
+ ></v-autocomplete>
 	  <form @submit.prevent="handleSubmit">
     <v-text-field v-model="searchkey" single-line></v-text-field>
 	    <v-btn round color="grey" dark type="submit" v-on:keyup.enter="handleSubmit">{{ $t('search')}}</v-btn>
@@ -28,10 +41,28 @@ const Main = { template: `
                 optionvalues : [],
                 querybindings : [],
                 searchkey : "",
-                notInital : false
+                notInital : false,
+                loading: false,
+items: [],
+search: null,
+select: null,
+states: []
           }
              },
+             watch: {
+   search (val) {
+     val && val !== this.select && this.querySelections(val)
+   },
+   select(newval,oldval)
+   {
+     console.log(newval)
+     console.log(oldval)
+     if(newval !=oldval)
+     this.searchkey = newval
+   }
+ },
                beforeMount() {
+      this.getWikidataItems()
     if (this.$route.query.lang) {
       i18n.locale = this.$route.query.lang
     }
@@ -41,6 +72,29 @@ const Main = { template: `
     } else ""
   },
 methods: {
+  getWikidataItems: function() {
+    if (this.$route.query.lang) {
+      i18n.locale = this.$route.query.lang
+    }
+var vm = this;
+sparqlQuery = queries[7].query.replace(/@@@language@@@/,i18n.locale)
+console.log(sparqlQuery)
+axios.get(sparqlQuery).then(function(response) {
+response.data.results.bindings.forEach(element => vm.states.push(element.itemLabel.value))
+console.log(vm.states)
+}, function(error) {
+console.log(error.statusText);
+});
+},
+  querySelections (v) {
+    this.loading = true
+    setTimeout(() => {
+      this.items = this.states.filter(e => {
+        return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+      })
+      this.loading = false
+    }, 500)
+  },
   handleSubmit() {
       this.notInitial = true
       this.queryAllEntries(this.searchkey.trim())
