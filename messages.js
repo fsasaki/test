@@ -22,7 +22,7 @@ en: {
   homepage : "Homepage",
   furtherinformation : "Further information",
   locations : "Locations",
-  activepersons : "Active persons in this location",
+  activepersons : "Active persons in {location}",
   searchdescription : "Search for persons, tools and places with a relation to language simplification.",
   search : "search"
 },
@@ -50,7 +50,7 @@ de: {
   homepage : "Webseite",
   furtherinformation : "Weitere Informationen",
   locations : "Orte",
-  activepersons : "Aktive Personen an diesem Ort",
+  activepersons : "Aktive Personen in {location}",
     searchdescription : "Suchen Sie nach Personen, Tools oder Orten mit Bezug zu Sprachvereinfachung.",
     search : "Suche"
 }

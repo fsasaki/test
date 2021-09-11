@@ -18,11 +18,12 @@ const Locations = { template: `
     <div class="querydetailresults" v-if="this.querybindingsonelocation[0]">
     <transition name="slide-fade">
     <div>
-    <p>{{ $t('activepersons') }}:</p>
+    <p>{{ $t('activepersons', {location : this.querybindingsonelocation[0].locationLabel.value}) }}:</p>
     <ul>
     <li v-for="(result, index) in this.querybindingsonelocation">
     <router-link v-bind:to="'/persons?qid=' +  result.person.value.split('entity/')[1] + '&' + i18n.locale">{{ result.personLabel.value}}</router-link>
     </li>
+    <li><a v-bind:href="makeresonatorlink(this.querybindingsonelocation[0].location.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></li>
     </ul>
     </div>
     </transition>
