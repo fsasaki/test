@@ -1,8 +1,9 @@
 const Locations = { template: `
  <div class="container">
-	  <div class="queryresults">
-	    <transition name="slide-fade">
-	      <div v-if="this.querybindings[0]">
+ <v-container>
+ <v-row v-if="this.querybindings[0]">
+ <v-card>
+ <v-card-text>
         <p>{{ $t('outputTemplates.TC2', {num: querybindings.length})}}</p>
         <ul>
 		    <li v-for="(result, index) in this.querybindings">
@@ -11,13 +12,20 @@ const Locations = { template: `
         </span>
 		    </li>
         </ul>
-	      </div>
-	      <p v-else-if="this.notInital">{{ $t('notfound') }}</p>
-	    </transition>
-	  </div>
-    <div class="querydetailresults" v-if="this.querybindingsonelocation[0]">
-    <transition name="slide-fade">
-    <div>
+	  </v-card-text>
+    </v-card>
+    </v-row>
+  <v-row v-else-if="this.notInital">
+  <v-card>
+  <v-card-text>
+<p>  {{ $t('notfound') }}</p>
+</v-card-text>
+</v-card>
+</v-row>
+          <v-divider class="mx-4"></v-divider>
+    <v-row v-if="this.querybindingsonelocation[0]">
+    <v-card>
+    <v-card-text>
     <p>{{ $t('activepersons', {location : this.querybindingsonelocation[0].locationLabel.value}) }}:</p>
     <ul>
     <li v-for="(result, index) in this.querybindingsonelocation">
@@ -25,14 +33,18 @@ const Locations = { template: `
     </li>
     <li><a v-bind:href="makeresonatorlink(this.querybindingsonelocation[0].location.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></li>
     </ul>
-    </div>
-    </transition>
-    </div>
-    <div class="map">
-    <transition name="slide-fade">
-    <iframe style="width: 80vw; height: 50vh; border: none;" v-bind:src="makemaplink()"></iframe>
-    </transition>
-    </div>
+    </v-card-text>
+    </v-card>
+    </v-row>
+          <v-divider class="mx-4"></v-divider>
+    <v-row>
+    <v-card>
+    <v-card-text>
+    <iframe style="width: 90vw; height: 50vh; border: none;" v-bind:src="makemaplink()"></iframe>
+    </v-card-text>
+    </v-card>
+    </v-row>
+    </v-container>
 	</div>
 `,
 data: function () {
