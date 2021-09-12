@@ -28,9 +28,9 @@ const Locations = { template: `
     </div>
     </transition>
     </div>
-    <div class="map">
+    <div class="map" style="display: block; text-align: center;">
     <transition name="slide-fade">
-    <iframe style="width: 80vw; height: 50vh; border: none;" v-bind:src="makemaplink()"></iframe>
+    <iframe style="width: 90vw; height: 50vh; border: none;" v-bind:src="makemaplink()"></iframe>
     </transition>
     </div>
 	</div>
