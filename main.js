@@ -55,8 +55,6 @@ states: []
    },
    select(newval,oldval)
    {
-     console.log(newval)
-     console.log(oldval)
      if(newval !=oldval)
      this.searchkey = newval
    }
@@ -78,10 +76,8 @@ methods: {
     }
 var vm = this;
 sparqlQuery = queries[7].query.replace(/@@@language@@@/,i18n.locale)
-console.log(sparqlQuery)
 axios.get(sparqlQuery).then(function(response) {
 response.data.results.bindings.forEach(element => vm.states.push(element.itemLabel.value))
-console.log(vm.states)
 }, function(error) {
 console.log(error.statusText);
 });
@@ -110,7 +106,7 @@ queryAllEntries(mysearchkey) {
 this.notInital = true
 this.updateQuerySearchKey(mysearchkey)
 sparqlDraftQuery = queries[6].query.replace(/@@@searchkey@@@/,mysearchkey)
-sparqlQuery = sparqlDraftQuery.replace(/@@@language@@@/,i18n.locale)
+sparqlQuery = sparqlDraftQuery.replaceAll("@@@language@@@",i18n.locale)
 axios.post(sparqlQuery)
 .then(response => (
 this.querybindings = response.data.results.bindings

@@ -10,7 +10,7 @@ en: {
   outputTemplates : {
     TC1 : "The following {num} persons are active in the area of language simplifcation.",
     TC8 : "The following {num} tools are available in the area of language simplifcation.",
-    TC2 : "The following {num} locations have people working on simplifcation.",
+    TC2 : "The following {num} locations have people or organizations working on simplifcation.",
     TC3 : "The following {num} organizations work on language simplifcation.",
     TC3Details : "Details about this organization"
   },
@@ -41,7 +41,7 @@ de: {
   outputTemplates : {
     TC1 : "Die folgenden {num} Personen sind im Bereich Sprachvereinfachung aktiv.",
     TC8 : "Die folgenden {num} Tools sind im Bereich Sprachvereinfachung verfügbar.",
-    TC2 : "An den folgenden  {num} Orten arbeiten Personen an Sprachvereinfachung.",
+    TC2 : "An den folgenden  {num} Orten arbeiten Personen und Organisationen an Sprachvereinfachung.",
     TC3 : "Die folgenden {num} Organisationen arbeiten an leichter Sprache",
     TC3Details : "Details zu {entityLabel}"
   },
