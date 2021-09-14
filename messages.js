@@ -10,7 +10,9 @@ en: {
   outputTemplates : {
     TC1 : "The following {num} persons are active in the area of language simplifcation.",
     TC8 : "The following {num} tools are available in the area of language simplifcation.",
-    TC2 : "The following {num} locations have people working on simplifcation."
+    TC2 : "The following {num} locations have people working on simplifcation.",
+    TC3 : "The following organizations work on language simplifcation.",
+    TC3Details : "Details about this organization."
   },
     personname : "Name: ",
     job: "Occupation",
@@ -24,7 +26,8 @@ en: {
   locations : "Locations",
   activepersons : "Active persons in {location}",
   searchdescription : "Search for persons, tools and places with a relation to language simplification.",
-  search : "search"
+  search : "search",
+  organizations : "Organizations",
 },
 de: {
   appTitle : "Sprachvereinfachung in Wikidata",
@@ -37,7 +40,9 @@ de: {
   outputTemplates : {
     TC1 : "Die folgenden {num} Personen sind im Bereich Sprachvereinfachung aktiv.",
     TC8 : "Die folgenden {num} Tools sind im Bereich Sprachvereinfachung verfügbar.",
-    TC2 : "An den folgenden  {num} Orten arbeiten Personen an Sprachvereinfachung."
+    TC2 : "An den folgenden  {num} Orten arbeiten Personen an Sprachvereinfachung.",
+    TC3 : "Die folgenden Organisationen arbeiten an leichter Sprache",
+    TC3Details : "Details zu dieser Organisation."
   },
   personname : "Name",
       job: "Beruf",
@@ -52,6 +57,7 @@ de: {
   locations : "Orte",
   activepersons : "Aktive Personen in {location}",
     searchdescription : "Suchen Sie nach Personen, Tools oder Orten mit Bezug zu Sprachvereinfachung.",
-    search : "Suche"
+    search : "Suche",
+    organizations : "Organisationen"
 }
 }

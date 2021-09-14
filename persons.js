@@ -20,8 +20,8 @@ const Persons = { template: `
     <div>
     <ul>
     <li>{{ $t('personname') }}: <span v-if="this.querybindingsoneperson[0].personLabel.value">{{this.querybindingsoneperson[0].personLabel.value}}</span></li>
-    <li>{{ $t('job') }}: <span v-if="this.querybindingsoneperson[0].occupationLabel.value">{{this.querybindingsoneperson[0].occupationLabel.value}}</span></li>
-    <li v-if="this.querybindingsoneperson[0].workLocationLabel.value">{{ $t('joblocation') }}:
+    <li v-if="this.querybindingsoneperson[0].occupation">{{ $t('job') }}: <span>{{this.querybindingsoneperson[0].occupationLabel.value}}</span></li>
+    <li v-if="this.querybindingsoneperson[0].workLocationLabel">{{ $t('joblocation') }}:
     <router-link v-bind:to="'/locations?qid=' +  this.querybindingsoneperson[0].workLocation.value.split('entity/')[1] + '&' + i18n.locale">{{ this.querybindingsoneperson[0].workLocationLabel.value}}</router-link>
     </li>
     <li><a v-bind:href="makeresonatorlink(this.querybindingsoneperson[0].person.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></li>

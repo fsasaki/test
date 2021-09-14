@@ -62,6 +62,9 @@ th.ux {
           <v-tab  :key="4" :to="`/locations`" exact>
            {{ $t('locations')}}
           </v-tab>
+          <v-tab  :key="5" :to="`/organizations`" exact>
+           {{ $t('organizations')}}
+          </v-tab>
         </v-tabs>
       </template>
     </v-toolbar>
@@ -92,6 +95,7 @@ th.ux {
 <script src="persons.js"></script>
 <script src="tools.js"></script>
 <script src="locations.js"></script>
+<script src="organizations.js"></script>
 <script src="router.js"></script>
 <script src="https://unpkg.com/vue-i18n@8"></script>
 <script src="messages.js"></script>
@@ -116,6 +120,7 @@ new Vue({
         { id: 2, name: "Tools", route: `/tools` },
         { id: 3, name: "Personen", route: `/persons` },
         { id: 4, name: "Orte", route: `/locations` },
+        { id: 5, name: "Organisationen", route: `/locations` }
       ]
     };
   },
