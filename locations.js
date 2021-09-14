@@ -18,13 +18,18 @@ const Locations = { template: `
     <div class="querydetailresults" v-if="this.querybindingsonelocation[0]">
     <transition name="slide-fade">
     <div>
-    <p>{{ $t('activepersons', {location : this.querybindingsonelocation[0].locationLabel.value}) }}:</p>
+    <p>{{ $t('activepersonsAndOrganzations', {location : this.querybindingsonelocation[0].locationLabel.value}) }}:</p>
     <ul>
     <li v-for="(result, index) in this.querybindingsonelocation">
+    <span v-if="result.person">
     <router-link v-bind:to="'/persons?qid=' +  result.person.value.split('entity/')[1] + '&' + i18n.locale">{{ result.personLabel.value}}</router-link>
+    </span>
+    <span v-if="result.organization">
+    <router-link v-bind:to="'/organizations?qid=' +  result.organization.value.split('entity/')[1] + '&' + i18n.locale">{{ result.organizationLabel.value}}</router-link>
+    </span>
     </li>
-    <li><a v-bind:href="makeresonatorlink(this.querybindingsonelocation[0].location.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></li>
     </ul>
+    <p><a v-bind:href="makeresonatorlink(this.querybindingsonelocation[0].location.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></p>
     </div>
     </transition>
     </div>
@@ -76,7 +81,7 @@ return {
        ))
    },
    makemaplink() {
-     var baselink = "https://query.wikidata.org/embed.html#%23defaultView%3AMap%0ASELECT%20distinct%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%0AWHERE%20%0A%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%3Fperson%20wdt%3AP937%20%3Flocation.%20%0A%20%20%3Flocation%20wdt%3AP625%20%3Fcoordinates%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AORDER%20BY%20%3FlocationLabel"
+     var baselink = "https://query.wikidata.org/embed.html#%23defaultView%3AMap%0ASELECT%20distinct%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%0AWHERE%20%0A%7B%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%3Fperson%20wdt%3AP937%20%3Flocation.%20%0A%20%20%20%20%7D%0A%20%20UNION%0A%20%20%7B%0A%20%20%20%20%3Forganisation%20wdt%3AP101%20wd%3AQ1814648.%0A%20%20%20%20%3Forganisation%20wdt%3AP159%20%3Flocation.%0A%20%20%20%20%7D%0A%20%20%3Flocation%20wdt%3AP625%20%3Fcoordinates%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AORDER%20BY%20%3FlocationLabel"
      var link = baselink.replace(/@@@language@@@/,i18n.locale)
      return link
    },

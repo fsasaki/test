@@ -3,7 +3,7 @@ const Organizations = { template: `
   <div class="queryresults">
   <transition name="slide-fade"><!-- this.config.messages.summary.parameters -->
   <div v-if="this.querybindings[0]">
-  <p>{{ $t(this.config.messages.summary.msgid,{num: querybindings.length})}}</p>
+  <p>{{ $t(this.config.messages.summary.msgid,{num: this.querybindings.length})}}</p>
   <ul>
   <li v-for="(result, index) in this.querybindings">
   <span v-bind:class="{triplestorelink: result.entity.value.startsWith('http://www.wikidata.org/entity/')}" v-on:click="queryOneEntity(result.entity.value)">
@@ -18,7 +18,7 @@ const Organizations = { template: `
   <div class="querydetailresults" v-if="this.querybindingsoneentity[0]">
   <transition name="slide-fade">
   <div>
-  <p>{{ this.querybindingsoneentity[0].entityLabel.value + ": " + $t(this.config.messages.details.msgid) }}:</p>
+  <p>{{ $t(this.config.messages.details.msgid, { entityLabel: this.querybindingsoneentity[0].entityLabel.value}) }}:</p>
   <ul v-if="this.querybindingsoneentity[0].relatedEntity1 || this.querybindingsoneentity[0].relatedEntity2">
   <li v-for="(result, index) in this.querybindingsoneentity">
   <span v-if="result.relatedEntity1">{{$t(config.relatedEntity1) + ": "}}
@@ -28,6 +28,10 @@ const Organizations = { template: `
   <router-link v-bind:to="'/' + config.relatedEntity2 + '?qid=' +  result.relatedEntity2.value.split('entity/')[1] + '&' + i18n.locale">{{
   result.relatedEntity2Label.value}}</router-link>
   </span>
+  </li>
+  <li v-if="this.querybindingsoneentity[0].location">{{$t('location') + ": "}}
+  <router-link v-bind:to="'/locations?qid=' +  this.querybindingsoneentity[0].location.value.split('entity/')[1] + '&' + i18n.locale">{{
+  this.querybindingsoneentity[0].locationLabel.value}}</router-link>
   </li>
   </ul>
   <p><a v-bind:href="makeresonatorlink(this.querybindingsoneentity[0].entity.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></p>
