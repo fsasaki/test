@@ -19,7 +19,7 @@ const Organizations = { template: `
   <transition name="slide-fade">
   <div>
   <p>{{ this.querybindingsoneentity[0].entityLabel.value + ": " + $t(this.config.messages.details.msgid) }}:</p>
-  <ul>
+  <ul v-if="this.querybindingsoneentity[0].relatedEntity1 || this.querybindingsoneentity[0].relatedEntity2">
   <li v-for="(result, index) in this.querybindingsoneentity">
   <span v-if="result.relatedEntity1">{{$t(config.relatedEntity1) + ": "}}
   <router-link v-bind:to="'/' + config.relatedEntity1 + '?qid=' +  result.relatedEntity1.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity1Label.value}}</router-link>

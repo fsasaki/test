@@ -12,7 +12,7 @@ en: {
     TC8 : "The following {num} tools are available in the area of language simplifcation.",
     TC2 : "The following {num} locations have people working on simplifcation.",
     TC3 : "The following organizations work on language simplifcation.",
-    TC3Details : "Details about this organization."
+    TC3Details : "Details about this organization"
   },
     personname : "Name: ",
     job: "Occupation",
@@ -42,7 +42,7 @@ de: {
     TC8 : "Die folgenden {num} Tools sind im Bereich Sprachvereinfachung verfügbar.",
     TC2 : "An den folgenden  {num} Orten arbeiten Personen an Sprachvereinfachung.",
     TC3 : "Die folgenden Organisationen arbeiten an leichter Sprache",
-    TC3Details : "Details zu dieser Organisation."
+    TC3Details : "Details zu dieser Organisation"
   },
   personname : "Name",
       job: "Beruf",
