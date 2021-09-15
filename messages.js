@@ -24,7 +24,7 @@ en: {
   homepage : "Homepage",
   furtherinformation : "Further information",
   locations : "Locations",
-  location : "location",
+  location : "Location",
   activepersonsAndOrganzations : "Active persons and relevant organizations in {location}",
   searchdescription : "Search for persons, tools and places with a relation to language simplification.",
   search : "search",

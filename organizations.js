@@ -18,7 +18,7 @@ const Organizations = { template: `
   <div class="querydetailresults" v-if="this.querybindingsoneentity[0]">
   <transition name="slide-fade">
   <div>
-  <p>{{ $t(this.config.messages.details.msgid, { entityLabel: this.querybindingsoneentity[0].entityLabel.value}) }}:</p>
+  <p>{{ $t(this.config.messages.details.msgid, { entityLabel: this.querybindingsoneentity[0].entityLabel.value})}}:</p>
   <ul v-if="this.querybindingsoneentity[0].relatedEntity1 || this.querybindingsoneentity[0].relatedEntity2">
   <li v-for="(result, index) in this.querybindingsoneentity">
   <span v-if="result.relatedEntity1">{{$t(config.relatedEntity1) + ": "}}
@@ -26,14 +26,14 @@ const Organizations = { template: `
   </span>
   <span v-if="result.relatedEntity2">{{$t(config.relatedEntity2) + ": "}}
   <router-link v-bind:to="'/' + config.relatedEntity2 + '?qid=' +  result.relatedEntity2.value.split('entity/')[1] + '&' + i18n.locale">{{
-  result.relatedEntity2Label.value}}</router-link>
+    result.relatedEntity2Label.value}}</router-link>
   </span>
   </li>
-  <li v-if="this.querybindingsoneentity[0].location">{{$t('location') + ": "}}
-  <router-link v-bind:to="'/locations?qid=' +  this.querybindingsoneentity[0].location.value.split('entity/')[1] + '&' + i18n.locale">{{
-  this.querybindingsoneentity[0].locationLabel.value}}</router-link>
-  </li>
   </ul>
+  <p v-if="this.querybindingsoneentity[0].location">{{$t('location') + ": "}}
+  <router-link v-bind:to="'/locations?qid=' +  this.querybindingsoneentity[0].location.value.split('entity/')[1] + '&' + i18n.locale">{{
+    this.querybindingsoneentity[0].locationLabel.value}}</router-link>
+    </p>
   <p><a v-bind:href="makeresonatorlink(this.querybindingsoneentity[0].entity.value)" target="_blank" rel="noopener noreferrer">{{$t('furtherinformation') }}</a></p>
   </div>
   </transition>

@@ -81,7 +81,7 @@ return {
        ))
    },
    makemaplink() {
-     var baselink = "https://query.wikidata.org/embed.html#%23defaultView%3AMap%0ASELECT%20distinct%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%0AWHERE%20%0A%7B%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%3Fperson%20wdt%3AP937%20%3Flocation.%20%0A%20%20%20%20%7D%0A%20%20UNION%0A%20%20%7B%0A%20%20%20%20%3Forganisation%20wdt%3AP101%20wd%3AQ1814648.%0A%20%20%20%20%3Forganisation%20wdt%3AP159%20%3Flocation.%0A%20%20%20%20%7D%0A%20%20%3Flocation%20wdt%3AP625%20%3Fcoordinates%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AORDER%20BY%20%3FlocationLabel"
+     var baselink = "https://query.wikidata.org/embed.html#%23defaultView%3AMap%0ASELECT%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%20%3Fperson%20%3FpersonLabel%20%3Forganisation%20%3ForganisationLabel%20%0AWHERE%20%0A%7B%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%3Fperson%20wdt%3AP937%20%3Flocation.%20%0A%20%20%20%20%7D%0A%20%20UNION%0A%20%20%7B%0A%20%20%20%20%3Forganisation%20wdt%3AP101%20wd%3AQ1814648.%0A%20%20%20%20%3Forganisation%20wdt%3AP159%20%3Flocation.%0A%20%20%20%20%7D%0A%20%20%3Flocation%20wdt%3AP625%20%3Fcoordinates%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%20%3Fperson%20%3FpersonLabel%20%3Forganisation%20%3ForganisationLabel%20%0A%20"
      var link = baselink.replace(/@@@language@@@/,i18n.locale)
      return link
    },
