@@ -1,12 +1,12 @@
 const queries =
 [
   {
-"queryID" : "TC1",
-"query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fperson%20%3FpersonLabel%0AWHERE%20%0A%7B%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%20%20%20%7D%0A%20%20UNION%0A%20%20%7B%0A%20%20%20%20%3Fperson%20wdt%3AP2650%20wd%3A.%0A%20%20%20%20%7D%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20%3FpersonLabel"
+"queryID" : "personsGeneralQuery",
+"query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fentity%20%3FentityLabel%0AWHERE%20%0A%7B%0A%20%20BIND(%3Fperson%20AS%20%3Fentity)%0A%20%20BIND%20(%3FpersonLabel%20AS%20%3FentityLabel)%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%20%20%20%7D%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2C@@@language@@@%22.%20%7D%0A%7D%0AORDER%20BY%20%3FentityLabel"
 },
 {
-"queryID" : "TC1Details",
-"query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fperson%20%3FpersonLabel%20%3FoccupationLabel%20%3FworkLocation%20%3FworkLocationLabel%0AWHERE%20%0A%7B%0A%20%20VALUES%20%3Fperson%20%7B%0A%20%20%20%20%3C@@@qid@@@%3E%0A%20%20%20%20%7D%0AOPTIONAL%20%7B%0A%3Fperson%20wdt%3AP106%20%3Foccupation.%20%7D%0A%20%20%20%20%20%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP937%20%3FworkLocation.%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D"
+"queryID" : "personsDetailedQuery",
+"query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fentity%20%3FentityLabel%20%3FrelatedEntity1%20%3FrelatedEntity1Label%20%3FrelatedEntity2%20%3FrelatedEntity2Label%0A%7B%0A%20%20BIND(%3Fperson%20AS%20%3Fentity)%0A%20%20VALUES%20%3Fperson%20%7B%0A%20%20%20%20%3C@@@qid@@@%3E%20%20%20%20%7D%0AOPTIONAL%20%7B%0A%3Fperson%20wdt%3AP106%20%3Foccupation.%20%7D%0A%20%20%20%20%20%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP937%20%3FworkLocation.%20%7D%0A%20%20BIND(%3Foccupation%20AS%20%3FrelatedEntity2)%0A%20%20BIND(%3FworkLocation%20AS%20%3FrelatedEntity1)%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D"
 },
 {
   "queryID" : "TC8",
@@ -42,6 +42,10 @@ const queries =
   {
     "queryID" : "geoQueryLocations",
     "query" : "https://query.wikidata.org/sparql?query=SELECT%20distinct%20%3Flocation%20%3FlocationLabel%0AWHERE%20%0A%7B%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%3Fperson%20wdt%3AP937%20%3Flocation.%20%0A%20%20%7D%0A%20%20UNION%0A%20%20%7B%0A%20%20%20%20%3Forganisation%20wdt%3AP101%20wd%3AQ1814648.%0A%20%20%20%20%3Forganisation%20wdt%3AP159%20%3Flocation.%0A%20%20%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AORDER%20BY%20%3FlocationLabel"
+  },
+  {
+    "queryID" : "geoQueryLocationsEmbedded",
+    "query" : "https://query.wikidata.org/embed.html#%23defaultView%3AMap%0ASELECT%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%20%3Fperson%20%3FpersonLabel%20%3Forganisation%20%3ForganisationLabel%20%3FpersonURI%20%3ForganisationURI%20%3FlocationURI%0AWHERE%20%0A%7B%0A%20%20%20%20BIND(IRI(CONCAT(%22https%3A%2F%2Ffsasaki.github.io%2Ftest%2F%23%2Fpersons%3Fqid%3D%22%2CSTRAFTER(STR(%3Fperson)%2C%22http%3A%2F%2Fwww.wikidata.org%2Fentity%2F%22)))%20AS%20%3FpersonURI)%0A%20%20%20%20BIND(IRI(CONCAT(%22https%3A%2F%2Ffsasaki.github.io%2Ftest%2F%23%2Forganizations%3Fqid%3D%22%2CSTRAFTER(STR(%3Forganisation)%2C%22http%3A%2F%2Fwww.wikidata.org%2Fentity%2F%22)))%20AS%20%3ForganisationURI)%0A%20%20BIND(IRI(CONCAT(%22https%3A%2F%2Ffsasaki.github.io%2Ftest%2F%23%2Flocations%3Fqid%3D%22%2CSTRAFTER(STR(%3Flocation)%2C%22http%3A%2F%2Fwww.wikidata.org%2Fentity%2F%22)))%20AS%20%3FlocationURI)%0A%20%20%7B%0A%20%20%3Fperson%20wdt%3AP2650%20wd%3AQ1814648.%0A%20%20%3Fperson%20wdt%3AP937%20%3Flocation.%20%0A%20%20%20%20%7D%0A%20%20UNION%0A%20%20%7B%0A%20%20%20%20%3Forganisation%20wdt%3AP101%20wd%3AQ1814648.%0A%20%20%20%20%3Forganisation%20wdt%3AP159%20%3Flocation.%0A%20%20%20%20%7D%0A%20%20%3Flocation%20wdt%3AP625%20%3Fcoordinates%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AGROUP%20BY%20%3Flocation%20%3FlocationLabel%20%3Fcoordinates%20%3Fperson%20%3FpersonLabel%20%3Forganisation%20%3ForganisationLabel%20%3FpersonURI%20%3ForganisationURI%20%3FlocationURI%0A%20"
   },
   {
     "queryID" :"organizationsGeneralQuery",
