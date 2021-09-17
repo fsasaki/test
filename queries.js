@@ -9,12 +9,12 @@ const queries =
 "query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fentity%20%3FentityLabel%20%3FrelatedEntity1%20%3FrelatedEntity1Label%20%3FrelatedEntity2%20%3FrelatedEntity2Label%0A%7B%0A%20%20BIND(%3Fperson%20AS%20%3Fentity)%0A%20%20VALUES%20%3Fperson%20%7B%0A%20%20%20%20%3C@@@qid@@@%3E%20%20%20%20%7D%0AOPTIONAL%20%7B%0A%3Fperson%20wdt%3AP106%20%3Foccupation.%20%7D%0A%20%20%20%20%20%20%20OPTIONAL%20%7B%20%3Fperson%20wdt%3AP937%20%3FworkLocation.%20%7D%0A%20%20BIND(%3Foccupation%20AS%20%3FrelatedEntity2)%0A%20%20BIND(%3FworkLocation%20AS%20%3FrelatedEntity1)%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D"
 },
 {
-  "queryID" : "TC8",
-  "query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Ftool%20%3FtoolLabel%0AWHERE%20%0A%7B%0A%20%20%7B%0A%20%20%3Ftool%20wdt%3AP366%20wd%3AQ1814648.%0A%20%20%20%20%7D%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AORDER%20BY%20%3FtoolLabel"
+  "queryID" : "toolsGeneralQuery",
+  "query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fentity%20%3FentityLabel%0AWHERE%20%0A%7B%0A%20%20BIND(%3Ftool%20AS%20%3Fentity)%0A%20%20%3Ftool%20wdt%3AP366%20wd%3AQ1814648.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D%0AORDER%20BY%20%3FentityLabel"
 },
 {
-"queryID" : "TC8Details",
-"query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fwebpage%20%3FwebpageLabel%20%3Ftool%20%0AWHERE%20%0A%7B%0A%20%20VALUES%20%3Ftool%20%7B%0A%20%20%20%20%3C@@@qid@@@%3E%20%20%20%20%7D%0A%20%20%7B%0A%20%20%3Ftool%20wdt%3AP856%20%3Fwebpage.%0A%20%20%20%20%7D%0A%20%20%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D"
+"queryID" : "toolsDetailedQuery",
+"query" : "https://query.wikidata.org/sparql?query=SELECT%20%3Fentity%20%20%3FentityLabel%20%3FrelatedEntity1%20%3FrelatedEntity1Label%0AWHERE%20%0A%7B%0A%20%20BIND(%3Ftool%20AS%20%3Fentity)%0A%20%20BIND(%3Fwebpage%20AS%20%3FrelatedEntity1)%0A%20%20VALUES%20%3Ftool%20%7B%0A%20%20%20%20%3C@@@qid@@@%3E%20%20%20%20%7D%0A%20%20%7B%0A%20%20%3Ftool%20wdt%3AP856%20%3Fwebpage.%0A%20%20%20%20%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22@@@language@@@%2C%5BAUTO_LANGUAGE%5D%22.%20%7D%0A%7D"
 },
 {
   "queryID" : "TC2",

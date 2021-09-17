@@ -23,7 +23,8 @@ Vue.component('test' , { template: `
   <span>{{ $t(relatedentity1) + ": "}}</span>
   <span v-for="(result, index) in unique(this.querybindingsoneentity,'relatedEntity1')">
   <router-link v-if="relatedEntity1Type ==='url'" v-bind:to="'/' + relatedentity1 + '?qid=' +  result.relatedEntity1.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity1Label.value}}</router-link>
-  <span v-if="relatedEntity1Type !='url'">{{ result.relatedEntity1Label.value}}</span>
+  <a v-if="relatedEntity1Type ==='externalurl'" v-bind:href="result.relatedEntity1.value">{{ result.relatedEntity1Label.value}}</a>
+  <span v-if="relatedEntity1Type ==='text'">{{ result.relatedEntity1Label.value}}</span>
 <!--  <span v-if="index != resultsWithoutDublicates.length - 1">, </span>-->
   </span>
   </p>
@@ -31,7 +32,8 @@ Vue.component('test' , { template: `
   <span>{{ $t(relatedentity2) + ": "}}</span>
   <span v-for="(result, index) in unique(this.querybindingsoneentity,'relatedEntity2')">
   <router-link v-if="relatedEntity2Type ==='url'" v-bind:to="'/' + relatedentity2 + '?qid=' +  result.relatedEntity2.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity2Label.value}}</router-link>
-  <span v-if="relatedEntity2Type !='url'">{{ result.relatedEntity2Label.value}}</span>
+  <a v-if="relatedEntity2Type ==='externalurl'" v-bind:href="result.relatedEntity2.value">{{ result.relatedEntity2Label.value}}</a>
+  <span v-if="relatedEntity2Type ==='text'">{{ result.relatedEntity2Label.value}}</span>
 <!--  <span v-if="index != resultsWithoutDublicates.length - 1">, </span>-->
   </span>
   </p>
