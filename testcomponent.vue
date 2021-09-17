@@ -20,7 +20,7 @@ Vue.component('test' , { template: `
   <div>
   <p v-if="message2">{{ $t(message2, { entityLabel: this.querybindingsoneentity[0].entityLabel.value})}}:</p>
   <p v-if="this.querybindingsoneentity[0].relatedEntity1">
-  <span>{{ this.querybindingsoneentity[0].entityLabel.value + " --- " + $t(relatedentity1) + ": "}}</span>
+  <span>{{ $t(relatedentity1) + ": "}}</span>
   <span v-for="(result, index) in unique(this.querybindingsoneentity,'relatedEntity1')">
   <router-link v-if="relatedEntity1Type ==='url'" v-bind:to="'/' + relatedentity1 + '?qid=' +  result.relatedEntity1.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity1Label.value}}</router-link>
   <span v-if="relatedEntity1Type !='url'">{{ result.relatedEntity1Label.value}}</span>
@@ -28,7 +28,7 @@ Vue.component('test' , { template: `
   </span>
   </p>
   <p v-if="this.querybindingsoneentity[0].relatedEntity2">
-  <span>{{ this.querybindingsoneentity[0].entityLabel.value + " --- " + $t(relatedentity2) + ": "}}</span>
+  <span>{{ $t(relatedentity2) + ": "}}</span>
   <span v-for="(result, index) in unique(this.querybindingsoneentity,'relatedEntity2')">
   <router-link v-if="relatedEntity2Type ==='url'" v-bind:to="'/' + relatedentity2 + '?qid=' +  result.relatedEntity2.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity2Label.value}}</router-link>
   <span v-if="relatedEntity2Type !='url'">{{ result.relatedEntity2Label.value}}</span>
@@ -111,7 +111,7 @@ Vue.component('test' , { template: `
     uniqueKeys.push(element[key].value)
     }
     })
-    this.resultsWithoutDublicates = uniqueObjects
+    /*this.resultsWithoutDublicates = uniqueObjects*/
     return uniqueObjects
       }
   }

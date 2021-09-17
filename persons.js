@@ -9,8 +9,8 @@ const Persons = { template: `
   relatedentity2="job"
   relatedEntity2Type="text"
   outputlocation="false"
-  message1="outputTemplates.TC1""
-  message2=""
+  message1="outputTemplates.TC1"
+  message2="outputTemplates.TC1Details"
   ></test>
   `,data: function () {
     return { }
