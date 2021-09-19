@@ -19,7 +19,7 @@ Vue.component('test' , { template: `
   <transition name="slide-fade">
   <div>
   <p v-if="message2">{{ $t(message2, { entityLabel: this.querybindingsoneentity[0].entityLabel.value})}}:</p>
-  <p v-if="this.querybindingsoneentity[0].relatedEntity1">
+  <p v-if="checkIfEntityExists(this.querybindingsoneentity,'relatedEntity1')">
   <span>{{ $t(relatedentity1) + ": "}}</span>
   <span v-for="(result, index) in unique(this.querybindingsoneentity,'relatedEntity1')">
   <router-link v-if="relatedEntity1Type ==='url'" v-bind:to="'/' + relatedentity1 + '?qid=' +  result.relatedEntity1.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity1Label.value}}</router-link>
@@ -28,7 +28,7 @@ Vue.component('test' , { template: `
 <!--  <span v-if="index != resultsWithoutDublicates.length - 1">, </span>-->
   </span>
   </p>
-  <p v-if="this.querybindingsoneentity[0].relatedEntity2">
+  <p v-if="checkIfEntityExists(this.querybindingsoneentity,'relatedEntity2')">
   <span>{{ $t(relatedentity2) + ": "}}</span>
   <span v-for="(result, index) in unique(this.querybindingsoneentity,'relatedEntity2')">
   <router-link v-if="relatedEntity2Type ==='url'" v-bind:to="'/' + relatedentity2 + '?qid=' +  result.relatedEntity2.value.split('entity/')[1] + '&' + i18n.locale">{{ result.relatedEntity2Label.value}}</router-link>
@@ -101,19 +101,26 @@ Vue.component('test' , { template: `
     },
     makeresonatorlink(myqid) {
       var resonator = "https://reasonator.toolforge.org/?&q="
-      var ID = myqid.split('entity/Q')[1] /*http://www.wikidata.org/entity/Q108296278 */
+      var ID = myqid.split('entity/Q')[1] 
       return resonator.concat(ID,'&lang=',i18n.locale)
+    },
+    checkIfEntityExists(data,key){
+    var checkEntity = this.unique(data, key)
+    if (checkEntity.length > 0) {
+    return true}
+    else {return false}
     },
     unique (data, key){
     let uniqueObjects = [];
     let uniqueKeys = []
     data.forEach(element => {
+    if(element[key]){
     if(!uniqueObjects.includes(element[key].value) && !uniqueKeys.includes(element[key].value)) {
     uniqueObjects.push(element)
     uniqueKeys.push(element[key].value)
     }
+    }
     })
-    /*this.resultsWithoutDublicates = uniqueObjects*/
     return uniqueObjects
       }
   }
