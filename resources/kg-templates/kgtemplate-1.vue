@@ -1,4 +1,4 @@
-Vue.component('test' , { template: `
+Vue.component('kgtemplate' , { template: `
   <div class="container">
   <div class="queryresults">
   <transition name="slide-fade">
@@ -101,7 +101,7 @@ Vue.component('test' , { template: `
     },
     makeresonatorlink(myqid) {
       var resonator = "https://reasonator.toolforge.org/?&q="
-      var ID = myqid.split('entity/Q')[1] 
+      var ID = myqid.split('entity/Q')[1]
       return resonator.concat(ID,'&lang=',i18n.locale)
     },
     checkIfEntityExists(data,key){
