@@ -1,6 +1,6 @@
 const messages = {
   en: {
-    appTitle : "Language simplifcation within Wikidata",
+    appTitle : "Language simplification within Wikidata",
     appDescription : "This application presents information from Wikidata related to language simplification. ",
     message: {
       hello: '{msg} world'
